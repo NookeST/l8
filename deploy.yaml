@@ -7,7 +7,7 @@ config:
 
 hosts:
   staging:
-    remote_user: avtomaty6
+    remote_user: avtomat6
     hostname: 'scp93.hosting.reg.ru'
     deploy_path: '~/public_html'
 
