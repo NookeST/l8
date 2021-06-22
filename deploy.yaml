@@ -1,0 +1,26 @@
+import:
+  - recipe/laravel.php
+
+config:
+  application: 'l8'
+  repository: 'git@github.com:NookeST/l8.git'
+
+  remote_user: avtomaty6
+  base_deploy_path: '~/public_html'
+
+hosts:
+  staging:
+    hostname: 'avt'
+    deploy_path: '~/public_html'
+
+tasks:
+  deploy:
+    - deploy:prepare
+    - deploy:vendors
+    - artisan:storage:link
+    - artisan:config:cache
+    - artisan:route:cache
+    - deploy:publish
+
+after:
+  deploy:failed: deploy:unlock
