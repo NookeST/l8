@@ -37,6 +37,6 @@ jobs:
         env:
           DOT_ENV: ${{ secrets.DOT_ENV }}
         with:
-          ssh-private-key: ${{ secrets.KEY }}
-          ssh-known-hosts: ${{ secrets.KNOWN_HOSTS }}
+          private-key: ${{ secrets.KEY }}
+          known-hosts: ${{ secrets.KNOWN_HOSTS }}
           dep: deploy staging -v
