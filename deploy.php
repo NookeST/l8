@@ -16,19 +16,14 @@ set(
     }
 );
 
-// Configuring the rsync exclusions.
-// You'll want to exclude anything that you don't want on the production server.
-add('rsync', [
-    'exclude' => [
-        '.git',
-        '/.env',
-        '/storage/',
-        '/vendor/',
-        '/node_modules/',
-        '.github',
-        'deploy.php',
-    ],
-]);
+
+// Hosts
+host('l8')
+    ->hostname('scp93.hosting.reg.ru') // Hostname or IP address
+    ->stage('staging') // Deployment stage (production, staging, etc)
+    ->user('avtomaty6') // SSH user
+    ->set('deploy_path', '~/public_html'); // Deploy path
+
 
 // Set up a deployer task to copy secrets to the server.
 // Since our secrets are stored in GitHub, we can access them as env vars.
@@ -40,35 +35,5 @@ task(
     }
 );
 
-// Hosts
-host('l8') // Name of the server
-->hostname('scp93.hosting.reg.ru') // Hostname or IP address
-->stage('staging') // Deployment stage (production, staging, etc)
-->user('avtomaty6') // SSH user
-->set('deploy_path', '~/public_html'); // Deploy path
 
 after('deploy:failed', 'deploy:unlock'); // Unlock after failed deploy
-
-desc('Deploy the application');
-task(
-    'deploy',
-    [
-        'deploy:info',
-        'deploy:prepare',
-        'deploy:lock',
-        'deploy:release',
-        'rsync', // Deploy code & built assets
-        'deploy:secrets', // Deploy secrets
-        'deploy:shared',
-        'deploy:vendors',
-        'deploy:writable',
-        'artisan:storage:link', // |
-        'artisan:view:cache',   // |
-        'artisan:config:cache', // | Laravel specific steps
-        'artisan:optimize',     // |
-        'artisan:migrate',      // |
-        'deploy:symlink',
-        'deploy:unlock',
-        'cleanup',
-    ]
-);

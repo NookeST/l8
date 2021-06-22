@@ -28,11 +28,11 @@ jobs:
           php-version: 8.0
           extension-csv: mbstring, bcmath
 
-      - name: Composer install
-        run: composer install
+      - name: Install Dependencies
+        run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
 
       # Runs a set of commands using the runners shell
-      - name: Setup Deployer
+      - name: Deploy
         uses: deployphp/action@master
         env:
           DOT_ENV: ${{ secrets.DOT_ENV }}
