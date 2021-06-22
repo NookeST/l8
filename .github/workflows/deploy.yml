@@ -36,5 +36,5 @@ jobs:
         uses: deployphp/action@master
         with:
           private-key: ${{ secrets.KEY }}
-          known-hosts: ${{ secrets.KNOWN_HOST }}
-          dep: deploy staging -v
+          known-hosts: ${{ secrets.KNOWN_HOSTS }}
+          dep: deploy stag -v

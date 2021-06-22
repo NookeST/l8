@@ -10,6 +10,10 @@ hosts:
     remote_user: avtomat6
     hostname: 'scp93.hosting.reg.ru'
     deploy_path: '~/public_html'
+  stag:
+    remote_user: stage_gateway
+    hostname: '88.216.146.37'
+    deploy_path: '~/code'
 
 tasks:
   deploy:
