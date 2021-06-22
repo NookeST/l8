@@ -34,9 +34,7 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Deploy
         uses: deployphp/action@master
-        env:
-          DOT_ENV: ${{ secrets.DOT_ENV }}
         with:
           private-key: ${{ secrets.KEY }}
-          known-hosts: ${{ secrets.KNOWN_HOSTS }}
+          known-hosts: ${{ secrets.KNOWN_HOST }}
           dep: deploy staging -v

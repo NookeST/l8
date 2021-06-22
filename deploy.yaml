@@ -5,12 +5,10 @@ config:
   application: 'l8'
   repository: 'git@github.com:NookeST/l8.git'
 
-  remote_user: avtomaty6
-  base_deploy_path: '~/public_html'
-
 hosts:
   staging:
-    hostname: 'avt'
+    remote_user: avtomaty6
+    hostname: 'scp93.hosting.reg.ru'
     deploy_path: '~/public_html'
 
 tasks:
