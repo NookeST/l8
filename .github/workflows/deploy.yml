@@ -37,4 +37,4 @@ jobs:
         with:
           private-key: ${{ secrets.KEY }}
           known-hosts: ${{ secrets.KNOWN_HOSTS }}
-          dep: deploy stag -v
+          dep: deploy staging -v
